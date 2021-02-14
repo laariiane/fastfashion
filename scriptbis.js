@@ -3,102 +3,74 @@
 })*/
 
 
-$(document).ready(function(){
-
-  $(window).on('scroll', function() {
-
-
-    var y_scroll_pos = window.pageYOffset;
-    var scroll_pos_2400 = 3190;
+window.addEventListener("scroll", function() {
+  let y_scroll_pos = window.pageYOffset;
+  let scroll_pos_2400 = 3190;
 
     if(y_scroll_pos > scroll_pos_2400) {
-      $(".st0").attr("class",'st0 st0active');
-      $(".st2").attr("class",'st2 st2active');
-      $(".st3").attr("class",'st3 st3active');
-      $(".st4").attr("class",'st4 st4active');
-      $(".st1").attr("class",'st1 st1active');
-      $("#evanoui").css({"visibility":"visible"});
+        document.querySelector(".st0").classList.add('st0active');
+        document.querySelector(".st2").classList.add('st2active');
+        document.querySelector(".st3").classList.add('st3active');
+        document.querySelector(".st4").classList.add('st4active');
+        document.querySelector(".st1").classList.add('st1active');
+        document.querySelector("#evanoui").style.visibility = "visible";
     }
     else {
-      $("#evanoui").css({"visibility":"hidden"});
-      $(".st0").attr("class",'st0');
-      $(".st2").attr("class",'st2');
-      $(".st3").attr("class",'st3');
-      $(".st4").attr("class",'st4');
-      $(".st1").attr("class",'st1');
+        document.querySelector(".st0").classList.remove('st0active');
+        document.querySelector(".st2").classList.remove('st2active');
+        document.querySelector(".st3").classList.remove('st3active');
+        document.querySelector(".st4").classList.remove('st4active');
+        document.querySelector(".st1").classList.remove('st1active');
+        document.querySelector("#evanoui").style.visibility = "hidden";
     }
-  });
 
-
-
-  $(window).on('scroll', function() {
-    var y_scroll_pos = window.pageYOffset;
-    var scroll_pos_rana = 4250;
+    let scroll_pos_rana = 4250;
 
     if(y_scroll_pos > scroll_pos_rana) {
-      $("#rana1").css({"display":"none"});
-      $("#rana2").css({"display":"block"});
+        document.querySelector("#rana1").style.display = "none";
+        document.querySelector("#rana2").style.display = "block";
+    } else {
+        document.querySelector("#rana1").style.display = "block";
+        document.querySelector("#rana2").style.display = "none";
+    }
+
+
+    /*---------worker------------*/
+
+    //variable for the 'stroke-dashoffset' unit
+    var dashOffset = document.querySelector(".wowo").style.strokeDashoffset;
+    //on a scroll event - execute function
+
+        //calculate how far down the page the user is
+        var percentageComplete = ((window.scrollTop() / (document.querySelector("html").getBoundingClientRect().height - window.innerHeight + 1700)) * 100);
+        //convert dashoffset pixel value to interger
+        var newUnit = parseInt(dashOffset, 10);
+        //get the value to be subtracted from the 'stroke-dashoffset'
+        var offsetUnit = percentageComplete * (-(newUnit / 15));
+        //set the new value of the dashoffset to create the drawing effect
+        document.querySelector(".wowo").style.strokeDashoffset = newUnit - offsetUnit;
+
+
+    if(y_scroll_pos > 1242 && y_scroll_pos < 1816) {
+        document.querySelector(".wowo1").style.visibility = "visible"
     }
 
     else {
-      $("#rana2").css({"display":"none"});
-      $("#rana1").css({"display":"block"});
+        document.querySelector(".wowo1").style.visibility = "hidden"
     }
 
-  });
 
-  /*---------worker------------*/
+    if(y_scroll_pos > 2240) {
+        document.querySelector("#worker").style.visibility = "hidden"
+    }
 
-    //variable for the 'stroke-dashoffset' unit
-    var $dashOffset = $(".wowo").css("stroke-dashoffset");
-    //on a scroll event - execute function
-    $(window).scroll(function() {
-      //calculate how far down the page the user is
-      var $percentageComplete = (($(window).scrollTop() / ($("html").height() - $(window).height()+1700)) * 100);
-      //convert dashoffset pixel value to interger
-      var $newUnit = parseInt($dashOffset, 10);
-      //get the value to be subtracted from the 'stroke-dashoffset'
-      var $offsetUnit = $percentageComplete * (-($newUnit / 15));
-      //set the new value of the dashoffset to create the drawing effect
-      $(".wowo").css("stroke-dashoffset", $newUnit - $offsetUnit);
-  });
+    else if (y_scroll_pos < 800) {
+        document.querySelector("#worker").style.visibility = "hidden"
+    }
 
-
-        $(window).on('scroll', function() {
-          var y_scroll_pos = window.pageYOffset;
-
-          if(y_scroll_pos > 1242 && y_scroll_pos < 1816) {
-            $(".wowo1").css({"visibility":"visible"});
-          }
-
-          else {
-              $(".wowo1").css({"visibility":"hidden"});
-          }
-
-        });
-
-
-
-        $(window).on('scroll', function() {
-          var y_scroll_pos = window.pageYOffset;
-
-          if(y_scroll_pos > 2240) {
-            $("#worker").css({"visibility":"hidden"});
-          }
-
-          else if (y_scroll_pos < 800) {
-              $("#worker").css({"visibility":"hidden"});
-            }
-
-          else {
-              $("#worker").css({"visibility":"visible"});
-          }
-
-        });
-
-        $(function() {
-      		$(".logo").draggable();
-      	});
-
+    else {
+        document.querySelector("#worker").style.visibility = "visible"
+    }
 
 })
+
