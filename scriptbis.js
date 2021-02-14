@@ -1,8 +1,3 @@
-/*$(document).scroll(function() {
-    console.log($(document).scrollTop());
-})*/
-
-
 window.addEventListener("scroll", function() {
   let y_scroll_pos = window.pageYOffset;
   let scroll_pos_2400 = 3190;
@@ -42,7 +37,7 @@ window.addEventListener("scroll", function() {
     //on a scroll event - execute function
 
         //calculate how far down the page the user is
-        var percentageComplete = ((window.scrollTop() / (document.querySelector("html").getBoundingClientRect().height - window.innerHeight + 1700)) * 100);
+        var percentageComplete = ((window.pageYOffset / (document.querySelector("html").getBoundingClientRect().height - window.innerHeight + 1700)) * 100);
         //convert dashoffset pixel value to interger
         var newUnit = parseInt(dashOffset, 10);
         //get the value to be subtracted from the 'stroke-dashoffset'
@@ -72,5 +67,5 @@ window.addEventListener("scroll", function() {
         document.querySelector("#worker").style.visibility = "visible"
     }
 
-})
+});
 
